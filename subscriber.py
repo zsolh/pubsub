@@ -8,21 +8,22 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credentials_path
 
 timeout = 5.0                                                                       # timeout in seconds
 
-global subscriber
+# global subscriber
 subscriber = pubsub_v1.SubscriberClient()
 
 subscription_path = 'projects/total-media-411521/subscriptions/MyTopic-sub'
 
 
 def handle_message(message):
-    print(f'Received message: {message}')
-    print(f'data: {message.data}')
+    #global subscription_path
+    #print(f'Received message: {message}')
+    #print(f'data: {message.data}')
 
     if message.attributes:
         print("Attributes:")
         for key in message.attributes:
             value = message.attributes.get(key)
-            print(f"{key}: {value}")
+            #print(f"{key}: {value}")
 
     subscription_path = message.attributes.get('nextSubscriptionName')
     print(subscription_path)
